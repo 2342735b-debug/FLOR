@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Impacto de la IA en las empresas · Flor Estrella Hernández González</title>
+<meta name="description" content="Recorrido interactivo: historia, arquitectura, regulación en México, beneficios, riesgos e implementación responsable de la IA en las empresas.">
+<style>
+:root{--ink:#0f1d2e;--ink2:#1d3550;--teal:#1f8a9f;--gold:#b5832a;--bg:#f4f7fa;--card:#fff;--tx:#1b2735;--mute:#566475;--line:#d6dee8;--ok:#1d7a4f;--warn:#a8561a;--soft:#e6f3f6;--serif:Georgia,"Times New Roman",serif;--sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+@media(prefers-color-scheme:dark){:root{--bg:#0b1522;--card:#13243a;--tx:#e6edf5;--mute:#9fb0c3;--line:#26405e;--soft:#12374a;--teal:#58c4d8;--gold:#e2b25f;--ok:#5fd09a;--warn:#f0a66a}}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{margin:0;font:1.05rem/1.7 var(--sans);background:var(--bg);color:var(--tx)}
+h1,h2,h3{font-family:var(--serif);line-height:1.2;margin:0 0 .6em;color:var(--ink)}
+@media(prefers-color-scheme:dark){h1,h2,h3{color:#fff}}
+p{margin:0 0 1em;max-width:70ch}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.skip{position:absolute;left:-999px}.skip:focus{left:8px;top:8px;background:#fff;color:#000;padding:8px;z-index:99}
+#bar{position:fixed;top:0;left:0;height:4px;width:0;background:linear-gradient(90deg,var(--teal),var(--gold));z-index:60}
+header.top{position:sticky;top:0;z-index:50;display:flex;gap:12px;align-items:center;padding:10px 16px;background:var(--ink);color:#fff}
+header.top b{font-family:var(--serif);font-size:.95rem;flex:1}
+#menuBtn{background:none;border:1px solid #fff5;border-radius:8px;color:#fff;padding:6px 12px}
+nav#rail{position:fixed;top:48px;bottom:0;left:0;width:280px;overflow:auto;background:var(--card);border-right:1px solid var(--line);padding:16px 8px;transform:translateX(-100%);transition:transform .25s;z-index:40}
+nav#rail.open{transform:none}
+nav#rail a{display:block;padding:8px 12px;border-radius:8px;color:var(--tx);text-decoration:none;font-size:.9rem;line-height:1.35;border-left:3px solid transparent}
+nav#rail a.on{background:var(--soft);border-left-color:var(--teal);font-weight:600}
+nav#rail a:hover{background:var(--soft)}
+main{width:100%}
+@media(min-width:1000px){header.top{display:none}nav#rail{top:0;transform:none}main{margin-left:280px;width:auto}html{scroll-padding-top:16px}}
+.hero{position:relative;min-height:86vh;display:flex;flex-direction:column;justify-content:center;padding:clamp(24px,6vw,80px);background:linear-gradient(120deg,#0b1826,#1d3550);color:#fff;overflow:hidden}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;opacity:.8}
+.hero>div{position:relative;max-width:900px}
+.hero h1{color:#fff;font-size:clamp(2rem,6vw,4.2rem);letter-spacing:-.01em}
+.hero .au{color:#e2b25f;font-family:var(--serif);font-size:1.15rem}
+.hero p{color:#cfdbe8;font-size:1.15rem}
+.btn{display:inline-block;background:var(--gold);color:#1a1205;border:0;border-radius:10px;padding:12px 22px;font-weight:700;text-decoration:none}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px;margin-top:32px;position:relative}
+.stat{background:#ffffff14;border:1px solid #ffffff2a;border-radius:12px;padding:14px 16px}
+.stat b{display:block;font:700 2rem var(--serif);color:#7fdcec}.stat span{font-size:.85rem;color:#cfdbe8;line-height:1.3;display:block}
+section.sec{padding:clamp(40px,7vw,96px) clamp(20px,5vw,72px);border-bottom:1px solid var(--line)}
+section.sec:nth-of-type(even){background:var(--card)}
+.sec>h2{font-size:clamp(1.6rem,3.5vw,2.4rem);max-width:28ch}
+.sec .n{display:inline-block;background:var(--ink);color:#fff;border-radius:99px;font:700 .8rem var(--sans);padding:2px 12px;margin-bottom:12px}
+.lead{font-size:1.15rem}
+.simple{border-left:5px solid var(--teal);background:var(--soft);border-radius:0 12px 12px 0;padding:14px 18px;margin:28px 0 0;max-width:75ch}
+.simple summary{cursor:pointer;font-weight:700}.simple p{margin:.6em 0 0}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0 12px}
+.tabs button{border:1px solid var(--line);background:var(--card);border-radius:99px;padding:7px 16px;font-size:.92rem}
+.tabs button[aria-selected=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+@media(prefers-color-scheme:dark){.tabs button[aria-selected=true]{background:var(--teal);color:#06202a;border-color:var(--teal)}}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;max-width:900px;animation:in .25s}
+section:nth-of-type(even) .panel{background:var(--bg)}
+@keyframes in{from{opacity:0;transform:translateY(6px)}}
+.panel h3{margin-bottom:.4em}.panel p:last-child{margin:0}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:12px}
+.kv div{border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:.95rem}.kv small{display:block;color:var(--mute);font-weight:700}
+.tl{display:flex;gap:0;overflow-x:auto;padding:24px 4px 8px;border-top:3px solid var(--line);margin-top:20px;scroll-snap-type:x proximity}
+.tl button{flex:0 0 96px;background:none;border:0;text-align:center;position:relative;scroll-snap-align:center;padding:14px 4px 0}
+.tl button:before{content:"";position:absolute;top:-10px;left:50%;width:16px;height:16px;margin-left:-8px;border-radius:50%;background:var(--card);border:3px solid var(--teal)}
+.tl button[aria-selected=true]:before{background:var(--gold);border-color:var(--gold);transform:scale(1.35)}
+.tl b{font-family:var(--serif)}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:20px 0 12px}
+.flow button{border:2px solid var(--teal);background:var(--card);border-radius:12px;padding:10px 14px;font-weight:600;font-size:.9rem}
+.flow button[aria-pressed=true]{background:var(--teal);color:#fff}.flow i{color:var(--mute);font-style:normal}
+.bar{height:16px;border-radius:9px;background:var(--line);overflow:hidden;margin:6px 0 14px}.bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--gold));transition:width 1s}
+.tbl{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px;margin-top:14px}
+.tag{display:inline-block;border-radius:6px;padding:1px 10px;font-size:.8rem;font-weight:700;margin-bottom:6px}
+.t-v{background:#d9f2e5;color:#145a39}.t-s{background:#dde8fb;color:#1f3f86}.t-p{background:#fde5cf;color:#8a4310}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+section:nth-of-type(even) .card{background:var(--bg)}
+.card h3{font-size:1.05rem;margin-bottom:.3em}.card p{font-size:.95rem;margin:0}
+.risk{text-align:left;width:100%;display:block}.risk .ctl{display:none;margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);color:var(--ok);font-weight:600}.risk[aria-expanded=true] .ctl{display:block}
+.chk{list-style:none;padding:0;margin:16px 0;max-width:800px}
+.chk li{margin-bottom:8px}.chk label{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px;cursor:pointer}
+.chk input{width:22px;height:22px;accent-color:var(--teal);margin-top:2px;flex:none}.chk input:checked+span{text-decoration:line-through;color:var(--mute)}
+.callout{background:var(--ink);color:#fff;border-radius:14px;padding:22px 26px;margin-top:24px;max-width:900px;font:1.2rem/1.5 var(--serif)}
+.opt{display:block;width:100%;text-align:left;background:var(--card);border:2px solid var(--line);border-radius:10px;padding:10px 14px;margin:8px 0}
+.opt.ok{border-color:var(--ok);background:#d9f2e5;color:#0d3d26}.opt.bad{border-color:var(--warn);background:#fde5cf;color:#5a2a08}
+.fb{margin-top:10px;font-weight:600}
+details.bib{max-width:900px;margin-top:14px}details.bib summary{cursor:pointer;font-weight:700}
+.bib li{margin:6px 0;font-size:.9rem;padding-left:1.5em;text-indent:-1.5em;list-style:none;overflow-wrap:anywhere}
+footer{padding:32px;text-align:center;color:var(--mute);font-size:.9rem}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<div id="bar" role="presentation"></div>
+<header class="top"><b>IA en las empresas</b><button id="menuBtn" aria-expanded="false" aria-controls="rail">Índice</button></header>
+<nav id="rail" aria-label="Índice de secciones"></nav>
+<main id="contenido">
+<header class="hero">
+<canvas id="net" aria-hidden="true"></canvas>
+<div>
+<p class="au">Flor Estrella Hernández González · Ingeniería de Prompt</p>
+<h1>Impacto de la Inteligencia Artificial en las empresas</h1>
+<p>Un recorrido para aprender cómo la IA cambia la forma de producir, decidir y competir; qué reglas aplican en México; y cómo adoptarla con responsabilidad.</p>
+<a class="btn" href="#s1">Empezar el recorrido</a>
+<div class="stats" id="stats"></div>
+</div>
+</header>
+<div id="app"></div>
+<footer>Material para evaluación de unidad · Ingeniería de Prompt · Fecha de corte documental: 6 de octubre de 2026.</footer>
+</main>
+
+<script>
+/* ===== Contenido ===== */
+const STATS=[[88,"%","de organizaciones usó IA en 2025 (Stanford HAI, 2026)"],[70,"%","empleó IA generativa en al menos una función"],[581.69,"mil M USD","de inversión corporativa global en IA, 2025"],[14,"%","más productividad en 5,179 agentes de atención (Brynjolfsson et al.)"]];
+
+const SEC=[
+{id:"s1",t:"Introducción y propósito del estudio",lead:"La IA pasó de ser una pregunta de investigación a una infraestructura que interviene en actividades empresariales concretas.",
+p:["Convierte datos en predicciones, recomendaciones, clasificaciones, contenido o acciones automáticas. Este trabajo la estudia a la vez como fenómeno tecnológico, económico, organizacional, jurídico y social, guiado por diez preguntas.","Se distingue expresamente entre legislación vigente y propuestas regulatorias: presentar una iniciativa como ley vigente produciría una conclusión jurídica incorrecta."],
+s:"¿Cómo cambia una empresa cuando una máquina puede aprender de datos y ayudar a las personas a decidir?",w:"intro"},
+{id:"s2",t:"¿Qué es la IA y por qué es estratégica?",lead:"Es un campo de la informática que desarrolla sistemas capaces de percibir, reconocer patrones, razonar, aprender, usar lenguaje y generar contenidos. No es una tecnología única.",
+p:["Su carácter estratégico viene de cinco propiedades: escala, velocidad, automatización, personalización y capacidad predictiva. Pero no sustituye automáticamente el juicio humano ni garantiza resultados: el valor depende de la calidad de los datos, el modelo, la integración con procesos, el contexto y los controles."],
+s:"Un algoritmo es una receta; los datos son los ingredientes; el modelo es el aprendiz que descubrió patrones; y la IA es el conjunto de herramientas que usa ese aprendizaje para ayudar a la empresa.",w:"concepts"},
+{id:"s3",t:"Marco histórico: de Turing a los agentes",lead:"La IA se construyó por capas: reglas, aprendizaje con datos, escala de cómputo y, finalmente, modelos que generan contenido y usan herramientas.",
+p:["Selecciona un hito de la línea de tiempo. Vaswani et al. (2017) introdujo el Transformer, que permitió procesar secuencias en paralelo y es la base técnica de numerosos modelos de lenguaje.","Contraste actual: la adopción organizacional llegó a 88% en 2025, pero el uso de agentes seguía en un solo dígito en casi todas las funciones."],
+s:"La IA no apareció de repente. Es una escalera: construir computadoras, programarlas, enseñarles con ejemplos y, por último, crear sistemas que producen texto, imágenes y acciones.",w:"timeline"},
+{id:"s4",t:"Impacto en procesos empresariales",lead:"La IA transforma procesos cuando cambia cómo se captura información, se ejecutan tareas o se toman decisiones. Elige un área.",
+p:["Brynjolfsson, Li y Raymond observaron +14% de productividad promedio con asistencia de IA, y mucho más entre agentes novatos: algunas tecnologías difunden buenas prácticas, no solo sustituyen trabajo. Toyota y Amazon ilustran la integración de IA y robótica en manufactura y logística."],
+s:"Antes una persona revisaba cada dato a mano. Ahora la computadora revisa miles y señala qué es raro o qué pasará probablemente. La persona sigue decidiendo qué hacer.",w:"impact"},
+{id:"s5",t:"Arquitectura de una solución de IA",lead:"Una solución empresarial es un sistema socio-técnico, no un solo modelo. Toca cada etapa del flujo para ver su función.",
+p:["En sistemas generativos puede añadirse RAG para recuperar documentos de la empresa antes de generar una respuesta. En producción el modelo debe monitorearse: los datos y el negocio cambian, y un modelo preciso hoy puede deteriorarse. NIST recomienda gestionar confianza y riesgo durante todo el ciclo de vida."],
+s:"Los datos son los ingredientes, la infraestructura es la cocina, el modelo es quien aprendió a cocinar, la aplicación es el mostrador y el monitoreo es quien revisa que el resultado siga siendo bueno.",w:"arch"},
+{id:"s6",t:"Normas, leyes y principios para empresas mexicanas",lead:"Hay que separar obligaciones vigentes de propuestas. Una empresa ya debe cumplir reglas aunque use IA.",
+p:["Filtra por estatus (al 6 de octubre de 2026). La LFPDPPP (DOF 20-03-2025) exige tratamiento legítimo, controlado e informado de datos, con derechos ARCO: automatizar no elimina el deber de protegerlos.","INDAUTOR comunicó en 2025 una resolución de la Suprema Corte: una obra sin autoría humana reconocible no puede registrarse como derecho de autor. Hay iniciativas específicas de IA en trámite (incluida una presentada el 6 de octubre de 2026): son tendencia regulatoria, no obligación."],
+s:"Si una propuesta dice «queremos regular la IA», todavía no es una ley obligatoria. Mientras tanto, las leyes que ya existen siguen aplicando.",w:"law"},
+{id:"s7",t:"Beneficios económicos y estratégicos",lead:"La IA crea valor cuando modifica una actividad de forma cuantificable: reduce tiempos, mejora calidad, aumenta conversión, previene pérdidas o habilita productos nuevos.",
+p:["La inversión corporativa global estimada en 2025 (581.69 mil millones de dólares) indica que la IA se trata ya como infraestructura económica, no solo como gasto de investigación. Elige un beneficio para ver cómo medirlo."],
+s:"Hay beneficio cuando la IA hace algo que antes costaba demasiado tiempo, dinero o esfuerzo, y lo hace mejor o más rápido.",w:"benefit"},
+{id:"s8",t:"Riesgos éticos, sociales, laborales y empresariales",lead:"Un error en un generador de texto es corregible; uno en una decisión laboral, crediticia, médica o de seguridad puede ser grave. Evalúa según el contexto y el impacto.",
+p:["Toca cada riesgo para ver su control recomendado. El Future of Jobs Report 2025 estima, entre 2025 y 2030, 170 millones de puestos creados y 92 millones desplazados a escala global, con un cambio importante en habilidades. La seguridad de IA también es cuestión de procesos, permisos, personas y gobierno."],
+s:"La IA puede ser muy útil, pero también equivocarse, discriminar o filtrar información. Es una herramienta poderosa: depende de quién la use, con qué datos y con qué reglas.",w:"risk"},
+{id:"s9",t:"Implementación responsable y eficiente",lead:"Pregunta inicial: no «¿dónde ponemos IA?», sino «¿qué problema vale la pena resolver y cómo mediremos que funcionó?».",
+p:["Marca los pasos para seguir tu progreso. Una política madura define quién aprueba un caso de uso, gestiona datos, valida el modelo, responde ante incidentes y decide detener el sistema.","No todas las empresas necesitan lo mismo: una PyME puede ganar más automatizando clasificación documental y atención básica que entrenando un modelo propio; una organización regulada necesita más controles antes de automatizar decisiones."],
+s:"Primero eliges el problema, después la herramienta. No compres una bicicleta para un problema que necesita un autobús.",w:"steps"},
+{id:"s10",t:"Cómo cambiará la relación empresa-IA",lead:"Son escenarios plausibles, no hechos garantizados.",
+p:["La IA generativa se integrará en CRM, ERP, desarrollo, análisis documental, soporte y operaciones. Los agentes podrían recibir una meta y coordinar herramientas, pero su uso masivo aún es temprano y exigirá controles más sofisticados.","En el mundo físico, IA, robótica y sensores permitirán percibir, decidir y aprender; Toyota describe investigación en «Physical AI» donde robots aprenden por demostración. La dirección pasará de leer reportes históricos a interactuar con simulaciones, pero seguirá fijando objetivos, límites y criterios éticos."],
+s:"Hoy muchas IA esperan una pregunta y responden. En el futuro algunas recibirán un objetivo y harán varios pasos solas; por eso necesitaremos reglas sobre qué pueden y qué no pueden hacer.",w:"future"},
+{id:"s11",t:"Conclusión ejecutiva: seis decisiones directivas",lead:"La IA es una transformación estratégica: modifica a la vez productividad, datos, procesos, empleo, innovación, clientes, seguridad y competencia.",
+p:["El objetivo no es una organización sin personas, sino una donde las personas se concentren en trabajo de mayor valor (juicio, creatividad, liderazgo, negociación, responsabilidad) mientras la automatización asume las tareas apropiadas."],
+s:"Ya no importa si la IA llegará a la empresa, sino si la empresa la incorporará con disciplina, seguridad, talento y responsabilidad.",w:"decide"},
+{id:"s12",t:"Comprueba lo aprendido",lead:"Cinco preguntas para repasar. Elige una respuesta para ver la explicación.",p:[],s:null,w:"quiz"},
+{id:"s13",t:"Prompt, evaluación y bibliografía",lead:"Registro del prompt maestro y su evaluación de ingeniería de prompts, más las referencias APA 7.ª ed.",p:[],s:null,w:"refs"}
+];
+
+const CONCEPTS=[["Algoritmo","Procedimiento finito y ordenado para resolver una tarea.","Regla para clasificar transacciones sospechosas."],["Dato","Representación de hechos, eventos o atributos que puede procesarse.","Ventas, sensores, visitas web, contratos."],["Machine Learning","Métodos que aprenden patrones a partir de datos.","Predicción de demanda."],["Deep Learning","Aprendizaje con redes neuronales de múltiples capas.","Reconocer defectos en imágenes."],["IA generativa","Modelos capaces de producir contenidos nuevos.","Borradores de marketing, código o informes."],["Inferencia","Aplicar el modelo entrenado a datos nuevos.","Estimar la probabilidad de abandono de un cliente."]];
+
+const HIST=[["1950","Turing","Alan Turing publica «Computing Machinery and Intelligence» y abre la discusión formal sobre inteligencia y computación."],["1956","Dartmouth","Consolida el nombre y el programa de investigación de la IA como campo académico."],["1958","Perceptrón","Rosenblatt propone un antecedente de los modelos neuronales que aprenden."],["1986","Backpropagation","Facilita el entrenamiento de redes neuronales."],["1997","Deep Blue","Derrota a Kasparov: capacidad computacional en tareas estratégicas."],["2012","AlexNet","Consolida el valor de datos + GPU + redes profundas."],["2017","Transformer","Arquitectura base de numerosos modelos generativos modernos."],["2020","GPT-3","Escala de modelos de lenguaje y aprendizaje con pocos ejemplos."],["2022","ChatGPT","Acelera la adopción masiva de la IA generativa."],["2025–26","Empresa y agentes","Integración en funciones y procesos; agentes aún en adopción temprana."]];
+
+const AREAS=[["Producción","Visión artificial, mantenimiento predictivo, robótica","Menos defectos, paros y desperdicios","Falsos positivos o fallas del sistema"],["Administración","Lectura documental, asistentes, automatización","Menos tareas repetitivas","Errores de interpretación"],["Finanzas","Fraude, scoring, pronósticos","Mayor capacidad analítica","Sesgo y opacidad"],["Recursos humanos","Selección, capacitación, habilidades","Gestión más basada en datos","Discriminación algorítmica"],["Marketing","Segmentación, contenido, recomendación","Mayor personalización","Privacidad y contenido engañoso"],["Logística","Pronóstico, inventarios, rutas","Menores tiempos y costos","Dependencia de datos y modelos"],["Atención","Chatbots, resumen, asistencia al agente","Mayor cobertura y velocidad","Respuestas incorrectas"],["Ciberseguridad","Anomalías, detección y priorización","Respuesta más rápida","Ataques y extracción de información"],["Dirección","Escenarios, predicciones y recomendaciones","Decisiones basadas en evidencia","Delegación excesiva"]];
+
+const ARCH=[["Fuentes de datos","Capturar hechos y eventos.","ERP, CRM, sensores, web."],["Almacenamiento","Conservar y organizar la información.","Data warehouse, data lake, base vectorial."],["Procesamiento","Limpiar, transformar y preparar datos.","Normalización, etiquetado, anonimización."],["Modelo","Aprender o representar patrones; se evalúa antes de desplegar.","Red neuronal, árbol, LLM."],["Infraestructura","Proporcionar cómputo, memoria y red.","CPU, GPU, nube."],["API / aplicación","Conectar el modelo con los procesos y presentar resultados.","Servicio web, chatbot, aplicación."],["Seguridad","Reducir accesos y ataques no autorizados.","Identidad, cifrado, permisos."],["Usuario y decisión","La persona decide con apoyo del sistema.","Supervisión humana y reglas de escalamiento."],["Monitoreo","Verificar desempeño y riesgos con retroalimentación.","Drift, precisión, latencia, costo."]];
+
+const LAW=[["v","Vigente","LFPDPPP (DOF 20-03-2025)","Tratamiento legítimo, controlado e informado de datos personales; privacidad, seguridad y derechos ARCO."],["v","Vigente","Ley Federal del Derecho de Autor","Uso de obras, derechos de terceros y autoría cuando existe IA. Última reforma consultada: 15-01-2026."],["v","Vigente","Ley Federal del Trabajo","Dignidad, igualdad y no discriminación; las decisiones algorítmicas no eliminan obligaciones laborales."],["v","Vigente","Ley Federal para Prevenir y Eliminar la Discriminación","Prevención de impactos discriminatorios. Reforma 14-11-2025."],["v","Vigente","Ley Federal de Protección al Consumidor","Publicidad e información veraz y no engañosa, también si se genera con IA."],["v","Vigente","Ley Federal de Competencia Económica","Reglas de competencia para conductas que usen algoritmos. Reforma 14-11-2025."],["s","Estándar / voluntario","Principios OCDE sobre IA (act. 2024)","Guía de IA confiable, derechos humanos y valores democráticos."],["s","Estándar / voluntario","NIST AI RMF 1.0 + perfil GenAI (2024)","Gestión de riesgos: gobierno, medición y control."],["v","Vigente (UE)","EU AI Act","Aplicación general desde el 2-ago-2026 con obligaciones escalonadas hasta 2027–2028; relevante si la empresa mexicana entra en su ámbito."],["p","Propuesta","Iniciativas mexicanas de IA 2026","Ley general de uso ético, IA laboral y Ley Nacional que regula el uso de la IA (6-oct-2026). Varias pendientes en comisión: no son obligatorias."]];
+
+const BEN=[["Productividad","Asistencia y automatización","Tiempo por tarea / casos por hora"],["Reducción de costos","Menor reproceso y desperdicio","Costo unitario / por transacción"],["Detección de oportunidades","Análisis de patrones","Tasa de conversión / nuevos ingresos"],["Personalización","Recomendaciones y segmentación","Conversión / retención"],["Predicción","Pronóstico de demanda, fraude o fallas","MAE, recall, precisión, pérdidas evitadas"],["Innovación","Prototipado y generación de contenido","Tiempo de lanzamiento / experimentos"],["Escalabilidad","Procesar más solicitudes con recursos similares","Volumen atendido por empleado"]];
+
+const RISK=[["Sesgo","Datos históricos desequilibrados","Pruebas por subgrupos y revisión de variables"],["Discriminación","Patrones que producen trato desigual","Evaluación de impacto y supervisión humana"],["Privacidad","Uso o exposición indebida de datos","Minimización, permisos y seguridad"],["Confabulación","Contenido falso con apariencia convincente","Verificación y límites de uso"],["Ciberseguridad","Prompt injection, poisoning, extracción","Pruebas adversariales, aislamiento y monitoreo"],["Propiedad intelectual","Uso de material protegido","Trazabilidad y revisión contractual"],["Desplazamiento laboral","Automatización de tareas","Reskilling, movilidad y rediseño de puestos"],["Opacidad","No poder explicar una decisión","Documentación y explicabilidad proporcional al riesgo"],["Dependencia","Concentración en un proveedor","Arquitectura portable y planes de continuidad"]];
+
+const STEPS=["Identificar el problema y su impacto económico.","Definir indicadores de éxito y umbrales de riesgo.","Inventariar los datos disponibles, faltantes y permitidos.","Evaluar si una automatización convencional lo resolvería mejor.","Seleccionar proveedor, arquitectura o modelo según el riesgo.","Construir un piloto limitado y representativo.","Probar precisión, robustez, sesgo, privacidad, seguridad y costo.","Incorporar supervisión humana y reglas de escalamiento.","Capacitar a quienes usarán o vigilarán el sistema.","Desplegar gradualmente y monitorear de forma continua."];
+
+const FUT=[["IA en las aplicaciones","Integración gradual en CRM, ERP, desarrollo, documentos, soporte y operaciones."],["Agentes","Reciben una meta y coordinan herramientas. Fase temprana: requieren controles más sofisticados."],["IA física","IA + robótica + sensores: percibir, decidir y aprender de los resultados."],["Decisión asistida","Comparar escenarios y calcular impactos; el directivo conserva objetivos, límites y criterios éticos."]];
+
+const DEC=["Priorizar casos de uso vinculados con objetivos de negocio.","Fortalecer gobierno y calidad de datos.","Definir una arquitectura segura y portable.","Establecer evaluación proporcional al riesgo.","Desarrollar competencias humanas complementarias.","Mantener vigilancia regulatoria."];
+
+const QUIZ=[["¿Qué hace que la IA sea una ventaja competitiva?",["Usarla por sí misma","Integrar IA, datos, procesos, personas, seguridad y estrategia",
+"Comprar el modelo más grande"],1,"La ventaja no surge de «usar IA», sino de integrarla con todo lo demás para crear valor sostenible."],
+["¿Qué introdujo el artículo de Vaswani et al. (2017)?",["El perceptrón","El algoritmo de backpropagation","La arquitectura Transformer"],2,"Es la base técnica de numerosos modelos de lenguaje modernos."],
+["Una iniciativa de ley mexicana sobre IA que está en comisión, ¿es obligatoria?",["Sí, desde que se presenta","No, es una propuesta hasta que se promulgue y entre en vigor","Solo para empresas grandes"],1,"Las empresas ya deben cumplir las leyes vigentes (datos, trabajo, consumo...), pero una iniciativa no es obligación jurídica."],
+["¿Por qué hay que monitorear un modelo en producción?",["Porque los datos y el negocio cambian y el modelo puede deteriorarse","Porque los modelos nunca fallan","Solo por requisito del proveedor"],0,"Un modelo preciso hoy puede perder desempeño (drift). El monitoreo detecta ese deterioro."],
+["¿Cuál es el primer paso de una implementación responsable?",["Elegir proveedor","Entrenar un modelo propio","Identificar el problema y su impacto económico"],2,"Primero el problema y cómo medir el éxito; después la herramienta."]];
+
+const REFS=["Amazon. (2024). Amazon unveils the next generation of fulfillment centers powered by AI and 10 times more robotics. https://www.aboutamazon.com/news/operations/amazon-fulfillment-center-robotics-ai","Brynjolfsson, E., Li, D., & Raymond, L. R. (2025). Generative AI at work. The Quarterly Journal of Economics, 140(2), 889-942. https://doi.org/10.1093/qje/qjae044","Cámara de Diputados del H. Congreso de la Unión. (2025). Ley Federal para Prevenir y Eliminar la Discriminación. https://www.diputados.gob.mx/LeyesBiblio/pdf/LFPED.pdf","Cámara de Diputados del H. Congreso de la Unión. (2025). Ley Federal de Competencia Económica. https://www.diputados.gob.mx/LeyesBiblio/pdf/LFCE.pdf","Cámara de Diputados del H. Congreso de la Unión. (2025). Ley Federal de Protección al Consumidor. https://www.diputados.gob.mx/LeyesBiblio/pdf/LFPC.pdf","Cámara de Diputados del H. Congreso de la Unión. (2026). Ley Federal del Derecho de Autor. https://www.diputados.gob.mx/LeyesBiblio/pdf/LFDA.pdf","Dartmouth College. (2026). The founding and future of AI. https://ai.dartmouth.edu/founding-and-future-ai","Diario Oficial de la Federación. (2025, 20 de marzo). Decreto por el que se expiden la Ley General de Transparencia y Acceso a la Información Pública; la Ley General de Protección de Datos Personales en Posesión de Sujetos Obligados; la Ley Federal de Protección de Datos Personales en Posesión de los Particulares... https://www.dof.gob.mx/nota_detalle.php?codigo=5752569&fecha=20/03/2025","European Parliament & Council of the European Union. (2024). Regulation (EU) 2024/1689 (Artificial Intelligence Act). https://eur-lex.europa.eu/eli/reg/2024/1689","Instituto Nacional del Derecho de Autor. (2025). Información institucional sobre obras creadas mediante inteligencia artificial. https://www.indautor.gob.mx/","National Institute of Standards and Technology. (2023). Artificial Intelligence Risk Management Framework (AI RMF 1.0). https://www.nist.gov/itl/ai-risk-management-framework","National Institute of Standards and Technology. (2024). AI RMF: Generative Artificial Intelligence Profile (NIST AI 600-1). https://doi.org/10.6028/NIST.AI.600-1","Organisation for Economic Co-operation and Development. (2024). OECD AI Principles. https://www.oecd.org/en/topics/ai-principles.html","OpenAI. (2020, May 28). Language models are few-shot learners. https://openai.com/index/language-models-are-few-shot-learners/","OpenAI. (2022, November 30). Introducing ChatGPT. https://openai.com/index/chatgpt/","Rosenblatt, F. (1958). The perceptron. Psychological Review, 65(6), 386-408. https://doi.org/10.1037/h0042519","Rumelhart, D. E., Hinton, G. E., & Williams, R. J. (1986). Learning representations by back-propagating errors. Nature, 323, 533-536. https://doi.org/10.1038/323533a0","Sistema de Información Legislativa. (2026, 17 de junio). Iniciativa: Ley General para la Regulación y Uso Ético de la Inteligencia Artificial. https://sil.gobernacion.gob.mx/Librerias/pp_ReporteSeguimiento.php?Asunto=5104326&Seguimiento=5104882","Sistema de Información Legislativa. (2026, 6 de octubre). Iniciativa: Ley Nacional que Regula el uso de la Inteligencia Artificial. https://sil.gobernacion.gob.mx/movil/?pg=msil%2FMMinuto%2Fasunto%2F4825444","Stanford Institute for Human-Centered Artificial Intelligence. (2026). AI Index Report 2026. https://hai.stanford.edu/ai-index/2026-ai-index-report","Turing, A. M. (1950). Computing machinery and intelligence. Mind, 59(236), 433-460. https://doi.org/10.1093/mind/LIX.236.433","Vaswani, A., et al. (2017). Attention is all you need. Advances in Neural Information Processing Systems, 30. https://proceedings.neurips.cc/paper/7181-attention-is-all-you-need","World Economic Forum. (2025). The Future of Jobs Report 2025. https://www.weforum.org/publications/the-future-of-jobs-report-2025/"];
+
+/* ===== Utilidades ===== */
+const $=(s,e=document)=>e.querySelector(s);
+const el=(h)=>{const t=document.createElement("template");t.innerHTML=h.trim();return t.content.firstChild};
+function tabs(items,draw,label){
+  const w=el(`<div><div class="tabs" role="tablist" aria-label="${label}"></div><div class="panel" role="tabpanel" aria-live="polite"></div></div>`);
+  const tl=$(".tabs",w),pn=$(".panel",w),bs=[];
+  items.forEach((it,i)=>{const b=el(`<button role="tab" aria-selected="false"></button>`);b.textContent=it;b.onclick=()=>sel(i);tl.append(b);bs.push(b)});
+  function sel(i){bs.forEach((b,j)=>b.setAttribute("aria-selected",j===i));pn.replaceChildren(el(`<div>${draw(i)}</div>`))}
+  tl.onkeydown=e=>{const c=bs.findIndex(b=>b.getAttribute("aria-selected")=="true");if(e.key=="ArrowRight"){sel((c+1)%bs.length);bs[(c+1)%bs.length].focus()}if(e.key=="ArrowLeft"){const n=(c-1+bs.length)%bs.length;sel(n);bs[n].focus()}};
+  sel(0);return w;
+}
+const kv=(a)=>`<div class="kv">${a.map(([k,v])=>`<div><small>${k}</small>${v}</div>`).join("")}</div>`;
+
+/* ===== Widgets ===== */
+const W={
+intro:()=>el(`<div class="kv" style="max-width:900px">${[["1","¿Qué es la IA y por qué es estratégica?"],["2","¿Cuál es su historia?"],["3","¿Cómo impacta a los procesos?"],["4","¿Cómo es su arquitectura?"],["5","¿Qué leyes aplican en México?"],["6","¿Qué beneficios genera?"],["7","¿Qué riesgos produce?"],["8","¿Cómo implementarla bien?"],["9","¿Cómo evolucionará?"],["10","¿Qué deben decidir los directivos?"]].map(([n,q])=>`<div><small>Pregunta ${n}</small>${q}</div>`).join("")}</div>`),
+concepts:()=>tabs(CONCEPTS.map(c=>c[0]),i=>`<h3>${CONCEPTS[i][0]}</h3><p>${CONCEPTS[i][1]}</p>${kv([["Ejemplo empresarial",CONCEPTS[i][2]]])}`,"Conceptos clave"),
+timeline:()=>{const w=el(`<div><div class="tl" role="tablist" aria-label="Línea de tiempo"></div><div class="panel" aria-live="polite"></div></div>`);const tl=$(".tl",w),pn=$(".panel",w),bs=[];
+  HIST.forEach((h,i)=>{const b=el(`<button role="tab"><b>${h[0]}</b><br><small>${h[1]}</small></button>`);b.onclick=()=>s(i);tl.append(b);bs.push(b)});
+  function s(i){bs.forEach((b,j)=>b.setAttribute("aria-selected",j===i));pn.replaceChildren(el(`<div><h3>${HIST[i][0]} · ${HIST[i][1]}</h3><p>${HIST[i][2]}</p></div>`))}s(0);return w},
+impact:()=>{const w=tabs(AREAS.map(a=>a[0]),i=>`<h3>${AREAS[i][0]}</h3>${kv([["Aplicaciones",AREAS[i][1]],["Efecto principal",AREAS[i][2]],["Riesgo clave",AREAS[i][3]]])}`,"Áreas de la empresa");
+  const x=el(`<div class="panel" style="margin-top:16px"><h3>+14% de productividad</h3><p>Efecto promedio de la asistencia de IA en 5,179 agentes de atención al cliente.</p><div class="bar"><span data-w="14" style="--x:14"></span></div></div>`);w.append(x);return w},
+arch:()=>{const w=el(`<div><div class="flow"></div><div class="panel" aria-live="polite"></div></div>`),f=$(".flow",w),pn=$(".panel",w),bs=[];
+  ARCH.forEach((a,i)=>{const b=el(`<button aria-pressed="false"></button>`);b.textContent=a[0];b.onclick=()=>s(i);f.append(b);bs.push(b);if(i<ARCH.length-1)f.append(el("<i>›</i>"))});
+  function s(i){bs.forEach((b,j)=>b.setAttribute("aria-pressed",j===i));pn.replaceChildren(el(`<div><h3>${ARCH[i][0]}</h3>${kv([["Función",ARCH[i][1]],["Ejemplo",ARCH[i][2]]])}</div>`))}s(0);return w},
+law:()=>{const w=el(`<div><div class="tabs" role="group" aria-label="Filtrar por estatus"></div><div class="tbl"></div></div>`),fs=[["all","Todos"],["v","Vigente"],["s","Estándar voluntario"],["p","Propuesta"]],t=$(".tabs",w),g=$(".tbl",w),bs=[];
+  const cls={v:"t-v",s:"t-s",p:"t-p"};
+  fs.forEach(([k,n])=>{const b=el(`<button aria-pressed="false">${n}</button>`);b.setAttribute("aria-selected","false");b.onclick=()=>d(k);t.append(b);bs.push(b)});
+  function d(k){bs.forEach((b,i)=>b.setAttribute("aria-selected",fs[i][0]===k));g.replaceChildren(...LAW.filter(l=>k=="all"||l[0]==k).map(l=>el(`<div class="card"><span class="tag ${cls[l[0]]}">${l[1]}</span><h3>${l[2]}</h3><p>${l[3]}</p></div>`)))}d("all");return w},
+benefit:()=>tabs(BEN.map(b=>b[0]),i=>`<h3>${BEN[i][0]}</h3>${kv([["Mecanismo",BEN[i][1]],["Indicador sugerido",BEN[i][2]]])}`,"Beneficios"),
+risk:()=>{const g=el(`<div class="tbl"></div>`);RISK.forEach(r=>{const b=el(`<button class="card risk" aria-expanded="false"><h3>${r[0]}</h3><p>${r[1]}</p><div class="ctl">Control: ${r[2]}</div></button>`);b.onclick=()=>b.setAttribute("aria-expanded",b.getAttribute("aria-expanded")!="true");g.append(b)});return g},
+steps:()=>{const w=el(`<div><ol class="chk"></ol><p><b id="pc">0 de ${STEPS.length} pasos</b></p><div class="bar"><span id="pb"></span></div></div>`),o=$(".chk",w);
+  STEPS.forEach((s,i)=>{const l=el(`<li><label><input type="checkbox"><span></span></label></li>`);$("span",l).textContent=`${i+1}. ${s}`;$("input",l).onchange=()=>{const n=o.querySelectorAll("input:checked").length;$("#pc",w).textContent=`${n} de ${STEPS.length} pasos`;$("#pb",w).style.width=n/STEPS.length*100+"%"};o.append(l)});return w},
+future:()=>tabs(FUT.map(f=>f[0]),i=>`<h3>${FUT[i][0]}</h3><p>${FUT[i][1]}</p>`,"Tendencias"),
+decide:()=>{const w=el(`<div><ol class="chk"></ol><div class="callout">La ventaja competitiva no surge de «usar IA», sino de integrar IA, datos, procesos, personas, seguridad y estrategia para producir valor sostenible.</div></div>`);
+  DEC.forEach((d,i)=>{const l=el(`<li><label><input type="checkbox"><span></span></label></li>`);$("span",l).textContent=`${i+1}. ${d}`;$(".chk",w).append(l)});return w},
+quiz:()=>{const w=el(`<div style="max-width:800px"></div>`);let score=0,done=0;
+  const res=el(`<p class="fb" aria-live="polite"></p>`);
+  QUIZ.forEach((q,i)=>{const c=el(`<div class="panel" style="margin-bottom:14px"><h3></h3><div></div><p class="fb"></p></div>`);$("h3",c).textContent=`${i+1}. ${q[0]}`;
+    q[1].forEach((o,j)=>{const b=el(`<button class="opt"></button>`);b.textContent=o;b.onclick=()=>{if(c.dataset.d)return;c.dataset.d=1;done++;const ok=j==q[2];if(ok)score++;b.classList.add(ok?"ok":"bad");if(!ok)$$(".opt",c)[q[2]].classList.add("ok");$(".fb",c).textContent=(ok?"Correcto. ":"Casi. ")+q[3];if(done==QUIZ.length)res.textContent=`Resultado: ${score} de ${QUIZ.length}.`};$("div",c).append(b)});w.append(c)});
+  w.append(res);return w},
+refs:()=>{const w=el(`<div></div>`);
+  w.append(el(`<div class="panel"><h3>Registro 01 · Prompt maestro de investigación</h3><p>«Desarrolla una investigación académica profunda sobre el impacto de la Inteligencia Artificial (IA) en las empresas, analizando su evolución histórica, funcionamiento, arquitectura tecnológica, regulación y consecuencias dentro del entorno empresarial...»</p>${kv([["Asertividad de elaboración","9.8 / 10"],["Completitud","10.0 / 10"],["Ingeniería del prompt","9.7 / 10"],["Promedio global","9.8 / 10"]])}</div>`));
+  w.append(el(`<details class="bib"><summary>Fortalezas y oportunidades de mejora del prompt</summary><p><b>Fortalezas:</b> contexto y propósito claros, especificidad (diez preguntas), control de calidad de fuentes, adaptación pedagógica y orientación de la salida.</p><p><b>Mejoras:</b> fijar desde el inicio la norma APA 7.ª ed. y el formato; definir extensión; jerarquizar fuentes; resolver contradicciones entre profundidad, extensión y claridad; evitar afirmaciones predictivas sin sustento e indicar la fecha de corte.</p></details>`));
+  const d=el(`<details class="bib"><summary>Bibliografía (APA 7.ª edición)</summary><ul style="padding:0"></ul></details>`);
+  REFS.forEach(r=>{const li=el("<li></li>");li.textContent=r;$("ul",d).append(li)});w.append(d);return w}
+};
+const $$=(s,e=document)=>[...e.querySelectorAll(s)];
+
+/* ===== Render ===== */
+const app=$("#app"),rail=$("#rail");
+SEC.forEach((s,i)=>{
+  const sec=el(`<section class="sec" id="${s.id}" aria-labelledby="${s.id}h"><span class="n">${i+1} de ${SEC.length}</span><h2 id="${s.id}h"></h2><p class="lead"></p></section>`);
+  $("h2",sec).textContent=s.t;$(".lead",sec).textContent=s.lead;
+  s.p.forEach(t=>{const p=el("<p></p>");p.textContent=t;sec.append(p)});
+  sec.append(W[s.w]());
+  if(s.s){const d=el(`<details class="simple"><summary>Explicación sencilla</summary><p></p></details>`);$("p",d).textContent=s.s;sec.append(d)}
+  app.append(sec);
+  const a=el(`<a href="#${s.id}"></a>`);a.textContent=`${i+1}. ${s.t}`;a.onclick=()=>rail.classList.remove("open");rail.append(a);
+});
+$("#menuBtn").onclick=e=>{const o=rail.classList.toggle("open");e.target.setAttribute("aria-expanded",o)};
+$("#stats").append(...STATS.map(([n,u,t])=>{const d=el(`<div class="stat"><b data-n="${n}">0</b><span></span></div>`);$("span",d).textContent=t;return d}));
+
+/* Contadores y barra (una sola animación de entrada) */
+const reduce=matchMedia("(prefers-reduced-motion:reduce)").matches;
+$$("[data-n]").forEach(b=>{const n=+b.dataset.n,u=STATS[$$("[data-n]").indexOf(b)][1],f=v=>(n%1?v.toFixed(2):Math.round(v))+(u=="%"?"%":"");
+  if(reduce){b.textContent=f(n);return}let t0;const st=ts=>{t0??=ts;const k=Math.min((ts-t0)/1400,1);b.textContent=f(n*k);k<1&&requestAnimationFrame(st)};requestAnimationFrame(st)});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){$$("a",rail).forEach(a=>a.classList.toggle("on",a.hash=="#"+e.target.id));$$(".bar span[data-w]",e.target).forEach(b=>b.style.width=b.dataset.w+"%")}}),{rootMargin:"-40% 0px -55% 0px"});
+$$(".sec").forEach(s=>io.observe(s));
+addEventListener("scroll",()=>{const h=document.documentElement;$("#bar").style.width=h.scrollTop/(h.scrollHeight-h.clientHeight)*100+"%"},{passive:true});
+
+/* Red de nodos del hero */
+(()=>{const c=$("#net"),x=c.getContext("2d");let w,h,N=[];
+  const rs=()=>{w=c.width=c.offsetWidth;h=c.height=c.offsetHeight;N=Array.from({length:Math.min(46,w/28|0)},()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35}))};
+  const dr=()=>{x.clearRect(0,0,w,h);N.forEach((a,i)=>{if(!reduce){a.x=(a.x+a.vx+w)%w;a.y=(a.y+a.vy+h)%h}
+    N.slice(i+1).forEach(b=>{const d=Math.hypot(a.x-b.x,a.y-b.y);if(d<130){x.strokeStyle=`rgba(98,205,226,${.5*(1-d/130)})`;x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.stroke()}});
+    x.fillStyle="#bdf0f8";x.beginPath();x.arc(a.x,a.y,2.4,0,7);x.fill()});if(!reduce)requestAnimationFrame(dr)};
+  addEventListener("resize",()=>{rs();dr()});rs();dr()})();
+</script>
+</body>
+</html>
